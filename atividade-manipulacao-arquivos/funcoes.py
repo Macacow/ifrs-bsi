@@ -27,16 +27,6 @@ def exibir_historico():
 
 #====================================================================
 
-def exibir_totalizador():
-	arquivo = open('totalizador-respostas.txt', 'r')
-	linhas = arquivo.readlines()
-
-	for linha in linhas:
-
-	arquivo.close()
-
-#====================================================================
-
 def limpar_questionario():
 	arquivo = open('historico-respostas.txt', 'w')
 	arquivo.write('')
