@@ -25,7 +25,22 @@ livro01.add_autor(autor01)
 livro01.add_autor(autor02)
 livro01.add_autor(autor03)
 livro01.remove_autor(autor02)
-
+livro02.add_autor(autor05)
 
 editora01.publicar(livro01)
+editora02.publicar(livro02)
+editora03.publicar(livro03)
+editora04.publicar(livro04)
+editora05.publicar(livro05)
+
+autor04.adicionar_livro(livro03)
+autor04.adicionar_livro(livro04)
+
+print(livro01.listar_autores())
+print(livro02.listar_autores())
+print(livro03.listar_autores())
+print(livro04.listar_autores())
+print(livro05.listar_autores())
+
 print(editora01.listar_livros())
+print(editora02.listar_livros())
