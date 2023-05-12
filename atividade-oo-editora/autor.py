@@ -5,9 +5,9 @@ from tipos import Pais
 class Autor():
 	"""A classe autor pode publicar livros e tal"""
 
-	__slots__ = ['__nome', '__data_nascimento', '__pseudonimo', '__livros']
+	__slots__ = ['__nome', '__data_nascimento', '__pseudonimo', '__livros', '__pais']
 
-	def __init__(self, nome:str, data_nascimento:date, pseudonimo:str=None):
+	def __init__(self, nome:str, data_nascimento:date, pseudonimo:str=None, pais:Pais=None):
 		"""Método Construtor da Classe Autor"""
 
 		self.nome = nome
@@ -15,6 +15,17 @@ class Autor():
 		self.pseudonimo = pseudonimo
 
 		self.__livros = set()
+
+	@property
+	def pais(self):
+		if not hasattr(self, '__pais'):
+			self.__pais = None
+
+		if not isinstance(p, Pais):
+			raise TypeError("O pais deve ser um Enum do tipo Pais")
+
+		else:
+			self.__pais = p	
 
 	@property
 	def nome(self):
@@ -29,7 +40,10 @@ class Autor():
 			raise TypeError("O nome deve ser uma string")
 
 		else:
-			self.__nome = n
+			if len(n) >= 10 and len(n) <= 100:
+				self.__nome = n
+			else:
+				raise ValueError("O Nome deve conter entre 10 e 100 caracteres")
 
 	@property
 	def data_nascimento(self):
@@ -59,7 +73,10 @@ class Autor():
 			raise TypeError("O pseudônimo deve ser uma variável do tipo string")
 
 		else:
-			self.__pseudonimo = pseudo
+			if len(pseudo) >= 3 and len(pseudo) <= 100:
+				self.__pseudonimo = pseudo
+			else:
+				raise ValueError("O Psudônimo deve conter entre 3 e 100 caracteres")
 
 	def adicionar_livro(self, livro:Livro):
 		if not isinstance(livro, Livro):

@@ -5,7 +5,7 @@ class Pais(Enum):
 	USA = "Estados Unidos da América"
 	JAPAN = "Japão"
 	AUSTRALIA = "Austrália"
-	PORTUGUAL = "Portugual"
+	PORTUGAL = "Portugual"
 
 class Genero(Enum):
 	HORROR = "Terror"

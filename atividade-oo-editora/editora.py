@@ -29,7 +29,10 @@ class Editora():
 			raise TypeError("O Código deve ser uma string")
 
 		else:
-			self.__cod = c
+			if len(c) == 10:
+				self.__cod = c
+			else:
+				raise ValueError("O Código deve ter 10 caracteres")
 
 	@property
 	def razao_social(self):
@@ -44,8 +47,10 @@ class Editora():
 			raise TypeError("A variável Razão Social deve ser do tipo string")
 
 		else:
-			self.__razao_social = rs
-
+			if len(rs) >= 10 and len(rs) <= 150:
+				self.__razao_social = rs
+			else:
+				raise ValueError("A Razão Social deve conter entre 10 e 150 caracteres")
 
 	@property
 	def nome_fantasia(self):
@@ -60,7 +65,9 @@ class Editora():
 			raise TypeError("A variável Nome Social deve ser do tipo string")
 
 		else:
-			self.__nome_fantasia = ns
+			if len(ns) >= 10 and len(ns) <= 150:
+				self.__nome_fantasia = ns
+			else: raise ValueError("O Nome Social deve conter entre 10 e 150 caracteres")
 
 	@property
 	def email(self):

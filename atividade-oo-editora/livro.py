@@ -6,14 +6,14 @@ Autor = "Autor"
 class Livro():
 	"""Classe livro né"""
 
-	__slots__ = ['__cod', '__titulo', '__resumo', '__isbn', '__publicacao', '__autores']
+	__slots__ = ['__cod', '__titulo', '__resumo', '__isbn', '__publicacao', '__autores', '__genero']
 
-	def __init__(self, cod:str, isbn:str):
+	def __init__(self, cod:str, isbn:str, genero:Genero=None):
 		"""Método Construtor da classe Livro"""
 
 		self.cod = cod
 		self.titulo = ''
-		self.resumo = ''
+		self.__resumo = ''
 		self.isbn = isbn
 
 		self.__autores = set()
@@ -31,7 +31,10 @@ class Livro():
 			raise TypeError("O Código deve ser uma string")
 
 		else:
-			self.__cod = c
+			if len(c) == 10:
+				self.__cod = c
+			else:
+				raise ValueError("O Código deve conter 10 caracteres")
 
 	@property
 	def titulo(self):
@@ -46,7 +49,10 @@ class Livro():
 			raise TypeError("O Título deve ser uma variável do tipo string")
 
 		else:
-			self.__titulo = title
+			if len(title) >= 1 and len(title) <= 100:
+				self.__titulo = title
+			else:
+				valueError("O Título deve conter entre 1 e 100 caracteres")
 
 	@property
 	def resumo(self):
@@ -61,7 +67,10 @@ class Livro():
 			raise TypeError("O Resumo deve ser uma variável do tipo string")
 
 		else:
-			self.__resumo = resum
+			if len(resum) >= 10 and len(resum) <= 500:
+				self.__resumo = resum
+			else:
+				raise ValueError("O Resumo deve conter entre 10 e 500 caracteres")
 
 	@property
 	def isbn(self):
@@ -76,7 +85,10 @@ class Livro():
 			raise TypeError("O ISBN deve ser uma variável do tipo string")
 
 		else:
-			self.__isbn = i
+			if len(i) == 13:
+				self.__isbn = i
+			else:
+				raise ValueError("O ISBN deve conter 13 digitos")
 
 	@property
 	def titulo(self):
