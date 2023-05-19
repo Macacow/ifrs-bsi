@@ -1,15 +1,17 @@
 from enum import Enum
 
 class Pais(Enum):
-	BRAZIL = "Brasil"
-	USA = "Estados Unidos da América"
-	JAPAN = "Japão"
-	AUSTRALIA = "Austrália"
-	PORTUGUAL = "Portugual"
+
+    BRAZIL = "Brasil"
+    USA = "Estados Unidos"
+    UK = "Reuno Unido"
+    EU = "Europa"
+    RU = "Russia"
 
 class Genero(Enum):
-	ROCK = "Rock"
-	POP = "Pop"
-	FUNK = "Funk"
-	RAP = "Rap"
-	REGGAE = "Reggae"
+
+    ROCK = "Rock"
+    PAGODE = "Pagode"
+    RAP = "Rap"
+    REGGAE = "Reggae"
+    FUNK = "Funk"

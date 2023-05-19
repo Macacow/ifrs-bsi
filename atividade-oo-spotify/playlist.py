@@ -1,49 +1,49 @@
 from musica import Musica
 
-class Playlist():
-	"""A Classe Playlist pode contemplar músicas, além de adicioná-las e removê-las"""
+class Playlist:
+    """Classe para a criação de uma Playlist"""
 
-	__slots__ = ['__nome', '__musicas']
+    __slots__= ['__nome','__musicas',]
 
-	def __init__(self, nome:str):
-		"""Método construtor da classe Playlist"""
+    def __init__(self, nome : str):
+        self.__nome = nome
+        self.__musicas = set()
 
-		if not isinstance(nome, str):
-			raise TypeError("O nome da playlist deve ser uma string")
 
-		self.nome = nome
-		self.__musicas = set()
+    @property
+    def nome(self):
+        return self.__nome
 
-	@property
-	def musicas(self):
-		return self.__musicas
+    @nome.setter
+    def nome(self, nome):
+        if not hasattr(self, '__nome'):
+            self.__nome = None
+        if isinstance(nome , str):
+            self.__nome = nome
+        else:
+            TypeError("O Titulo deve conter no máximo 20 caracteres :()")
 
-	@property
-	def nome(self):
-		return self.__nome
+    @property
+    def musicas(self) -> set:
+        return self.__musicas
+    
+    def add_musica(self, m : Musica):
+        if isinstance(m, Musica):
+            if m in self.__musicas:
+                raise ValueError("Esta música já existe nesta Playlist")
+            else:
+                self.__musicas.add(m)
+        else:
+            raise ValueError("A Música deve ser um objeto do tipo Música")
 
-	@nome.setter
-	def nome(self, n:str):
-		if not hasattr(self, '__nome'):
-			self.__nome = None
-
-		if not isinstance(n, str):
-			raise TypeError("O nome deve ser uma string")
-
-		else:
-			self.__nome = n
-
-	def add_musica(self, m:Musica):
-		if not isinstance(m, Musica):
-			raise TypeError("A música deve ser um objeto da classe Musica")
-		else:
-			self.musicas.add(m)
-
-	def remove_musica(self, m:Musica):
-		if not isinstance(m, Musica):
-			raise TypeError("A música deve ser um objeto da classe Musica")
-		else:
-			self.musicas.remove(m)
-
-	def __str__(self):
-		return __musicas
+    def remove_musica(self, m :Musica):
+        if isinstance(m, Musica):
+            if m in self.__musicas:
+                self.__musicas.remove(m)
+            else:
+                raise ValueError("Esta música não existe nesta Playlist")
+        else:
+            raise ValueError("A Música deve ser um objeto da classe Música")
+        
+    def __str__(self):
+        return self.nome

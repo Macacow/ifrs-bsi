@@ -1,54 +1,92 @@
 from datetime import time
 
-class Musica():
-	"""A classe Música possibilita o cadastro de uma música no Spotify. Uma música tem título, duração e quantidade de plays, além de métodos para tocar o som bacana"""
+Playlist = 'Playlist'
+Album = 'Album'
+Artista = 'Artistas'
 
-	__slots__ = ['__titulo', '__duracao', '__plays']
-	
-	def __init__(self, titulo:str, duracao:time):
-		"""Método construtor da classe Música"""
+class Musica:
+    """Classe para criação de uma Musica."""
 
-		if not isinstance(titulo, str):
-			raise TypeError("O Título da música deve ser uma string")
+    __slots__ = ['__titulo', '__duracao', '__plays', '__playlists', '__albums', '__artistas']
 
-		if not isinstance(duracao, time):
-			raise TypeError("A duração da música deve ser informada em uma variável do tipo time")
+    def __init__(self, titulo : str, duracao: time):
+        self.titulo = titulo
+        self.duracao= duracao
+        self.__plays= 0
+        self.__playlists = set()
+        self.__albums = set()      
+        self.__artistas = set()
 
-		self.titulo = titulo
-		self.duracao = duracao
-		self.__plays = 0
+    @property
+    def titulo(self) -> str:
+        return self.__titulo
 
-	@property
-	def titulo(self):
-		return self.__titulo
+    @titulo.setter
+    def titulo(self, titulo):
+        if not hasattr(self, '__titulo'):
+            self.__titulo = None
+        if isinstance(titulo, str) and (3 <= len(titulo) <= 30):
+            self.__titulo = titulo
+        else:
+            raise ValueError("O Titulo pode ter no máximo 20 caracteres")
 
-	@titulo.setter
-	def titulo(self, t:str):
-		if not hasattr(self, '__titulo'):
-			self.__titulo = None
+    @property
+    def duracao(self) -> time:
+        return self.__duracao
 
-		if not isinstance(t, str):
-			raise TypeError("O titulo deve ser uma string")
+    @duracao.setter
+    def duracao(self, durcacao):
+        if not hasattr(self, '__duracao'):
+            self.__duracao = None
+        if isinstance(durcacao, time):
+            self.__duracao = durcacao
 
-		else:
-			self.__titulo = t
+        else:
+            raise ValueError("A duração deve ser uma variável do tipo Time")
+    
+    @property
+    def plays(self) -> int:
+        return self.__plays
 
-	@property
-	def duracao(self):
-		return self.__duracao
+    def __str__(self):
+        mensagem = (f"Título: {self.titulo}, Duração: {self.duracao}, Reproduções: {self.plays}. \n")
+        return mensagem
 
-	@duracao.setter
-	def duracao(self, d:time):
-		if not hasattr(self, '__duracao'):
-			self.__duracao = None
+    def tocar(self):
+        self.__plays += 1
 
-		if not isinstance(d, time):
-			raise TypeError("A duracao deve ser uma variável do tipo time")
+    def add_playlist(self, p : Playlist):
+        if p.__class__.__name__ == Playlist:
+            self.__playlists.add(p)
+        else:
+            raise ValueError("A playlist deve ser um objeto da classe Playlist")
+  
+    def remove_playlist(self, p : 'Playlist'):
+        if p.__class__.__name__ == 'Playlist':
+            self.__playlists.remove(p)
+        else:
+            raise ValueError("A playlist deve ser um objeto da classe Playlist")
 
-		else:
-			self.__duracao = d
+    def add_artista(self, art : Artista):
+        if art.__class__.__name__ == 'Artista':
+            self.__artistas.add(art)
+        else:
+            raise ValueError("O Artista deve ser um objeto da classe Artista")
 
+    def remove_artista(self, art : Artista):
+        if art.__class__.__name__ == 'Artista':
+            self.__artistas.remove(art)
+        else:
+            raise ValueError("O Artista deve ser um objeto da classe Artista")
 
-	def tocar():
-		self.__plays += 1
+    def add_album(self, alb : Album):
+        if alb.__class__.__name__ == 'Album':
+            self.__albums.add(alb)
+        else:
+            raise ValueError("O Álbum deve ser um objeto da classe Album")
 
+    def remove_album(self, alb : Album):
+        if alb.__class__.__name__ == 'Album':
+            self.__albums.remove(alb)
+        else:
+            raise ValueError("O Álbum deve ser um objeto da classe Album")
