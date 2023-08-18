@@ -28,7 +28,15 @@ public class ControlAluno {
     public void criarAluno(){
         Aluno aluno1 = new Aluno(nome.getText(), Float.parseFloat(nota1.getText()), Float.parseFloat(nota2.getText()));
         float resultado = calcularMedia(aluno1);
-        saida.setText(resultado+"");
+        
+        if(resultado >= 7){
+            //Aprovado
+            saida.setText(aluno1.getNome() + ": Aprovado | " + resultado);
+        } else{
+            saida.setText(aluno1.getNome() + ": Reprovado | " + resultado);
+        }
+        
+        
     }
     
     public float calcularMedia(Aluno x){
